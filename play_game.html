@@ -1,0 +1,44 @@
+<!-- game/templates/game/play_game.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Play Game</title>
+    <script>
+        // Polling function to check the game state every 2 seconds
+        function pollGameState() {
+            fetch(window.location.href)
+                .then(response => response.text())
+                .then(html => {
+                    document.open();
+                    document.write(html);
+                    document.close();
+                });
+        }
+
+        // Set an interval to poll the game state
+        setInterval(pollGameState, 2000);
+    </script>
+</head>
+<body>
+    <h1>Rock Paper Scissors</h1>
+    {% if player == 'player1' %}
+        <p>You are Player 1. Share this link with your friend to play: {{ request.build_absolute_uri }}</p>
+    {% elif player == 'player2' %}
+        <p>You are Player 2.</p>
+    {% endif %}
+    {% if not game.completed %}
+        {% if player == 'player1' and game.player2 is None %}
+            <p>Waiting for Player 2 to join...</p>
+        {% else %}
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" name="choice" value="rock">Rock</button>
+                <button type="submit" name="choice" value="paper">Paper</button>
+                <button type="submit" name="choice" value="scissors">Scissors</button>
+            </form>
+        {% endif %}
+    {% else %}
+        <p>Game over! <a href="{% url 'game:game_result' game.id %}">See result</a></p>
+    {% endif %}
+</body>
+</html>
