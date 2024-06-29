@@ -1,4 +1,4 @@
-# RockNet
+# RockNet Hand Gesture RPS 
 
 This mini project empahasizes on real-time application of computer graphics and image processing (CGIP). RockNet is a real-time Rock-Paper-Scissors game implemented using Python libraries for computer graphics and image processing. This project demonstrates the application of computer vision techniques for real-time hand pose estimation and its integration with game development principles. The game logic adheres to the traditional Rock-Paper-Scissors rules to determine the winner and display the results. RockNet offers an interactive and engaging experience for playing Rock-Paper-Scissors using hand gestures.
 
