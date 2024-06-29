@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Game Result</title>
+</head>
+<body>
+    <h1>Game Result</h1>
+    <p>Player 1 chose: {{ game.player1_choice }}</p>
+    <p>Player 2 chose: {{ game.player2_choice }}</p>
+    {% if winner == 'Draw' %}
+        <p>It's a draw!</p>
+    {% else %}
+        <p>The winner is: {{ winner.username }}</p>
+    {% endif %}
+    <a href="{% url 'game:create_game' %}">Play again</a>
+</body>
+</html>
